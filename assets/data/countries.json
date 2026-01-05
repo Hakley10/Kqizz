@@ -1,0 +1,84 @@
+{
+  "items": [
+    {
+      "id": "kh",
+      "name": "Cambodia",
+      "capital": "Phnom Penh",
+      "continent": "Asia",
+      "flagImage": "assets/flags/cambodia_flag.png",
+      "mapImage": "assets/maps/cambodia_map.png"
+    },
+    {
+      "id": "vn",
+      "name": "Vietnam",
+      "capital": "Hanoi",
+      "continent": "Asia",
+      "flagImage": "assets/flags/vietnam_flag.png",
+      "mapImage": "assets/maps/vietnam_map.png"
+    },
+    {
+      "id": "jp",
+      "name": "Japan",
+      "capital": "Tokyo",
+      "continent": "Asia",
+      "flagImage": "assets/flags/japan_flag.png",
+      "mapImage": "assets/maps/japan_map.png"
+    },
+    {
+      "id": "kr",
+      "name": "South Korea",
+      "capital": "Seoul",
+      "continent": "Asia",
+      "flagImage": "assets/flags/south_korea_flag.png",
+      "mapImage": "assets/maps/south_korea_map.png"
+    },
+    {
+      "id": "fr",
+      "name": "France",
+      "capital": "Paris",
+      "continent": "Europe",
+      "flagImage": "assets/flags/france_flag.png",
+      "mapImage": "assets/maps/france_map.png"
+    },
+    {
+      "id": "de",
+      "name": "Germany",
+      "capital": "Berlin",
+      "continent": "Europe",
+      "flagImage": "assets/flags/germany_flag.png",
+      "mapImage": "assets/maps/germany_map.png"
+    },
+    {
+      "id": "gb",
+      "name": "United Kingdom",
+      "capital": "London",
+      "continent": "Europe",
+      "flagImage": "assets/flags/uk_flag.png",
+      "mapImage": "assets/maps/uk_map.png"
+    },
+    {
+      "id": "us",
+      "name": "United States",
+      "capital": "Washington, D.C.",
+      "continent": "America",
+      "flagImage": "assets/flags/usa_flag.png",
+      "mapImage": "assets/maps/usa_map.png"
+    },
+    {
+      "id": "br",
+      "name": "Brazil",
+      "capital": "Brasília",
+      "continent": "America",
+      "flagImage": "assets/flags/brazil_flag.png",
+      "mapImage": "assets/maps/brazil_map.png"
+    },
+    {
+      "id": "za",
+      "name": "South Africa",
+      "capital": "Pretoria",
+      "continent": "Africa",
+      "flagImage": "assets/flags/south_africa_flag.png",
+      "mapImage": "assets/maps/south_africa_map.png"
+    }
+  ]
+}
