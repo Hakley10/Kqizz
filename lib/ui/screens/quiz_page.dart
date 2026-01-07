@@ -6,7 +6,6 @@ import 'history_screen.dart';
 import 'abcd_quiz_screen.dart';
 import '../../services/progress_service.dart';
 
-
 class QuizPage extends StatefulWidget {
   const QuizPage({super.key});
 
@@ -20,9 +19,10 @@ class _QuizPageState extends State<QuizPage> {
 
   bool isDarkmode = false;
 
-  Color get bgColor =>  isDarkmode ? const Color(0xFF121212) : const Color(0xFFF4F4F4);
-  Color get cardColor =>  isDarkmode ? const Color(0xFF1E1E1E) : Colors.white;
-  Color get textColor =>  isDarkmode ? Colors.white : Colors.black;
+  Color get bgColor =>
+      isDarkmode ? const Color(0xFF121212) : const Color(0xFFF4F4F4);
+  Color get cardColor => isDarkmode ? const Color(0xFF1E1E1E) : Colors.white;
+  Color get textColor => isDarkmode ? Colors.white : Colors.black;
   Color get primaryColor => const Color(0xFF8442FE);
 
   void toggleTheme() {
@@ -30,19 +30,18 @@ class _QuizPageState extends State<QuizPage> {
   }
 
   @override
-    void initState() {
-      super.initState();
-      _loadProgress();
-    }
+  void initState() {
+    super.initState();
+    _loadProgress();
+  }
 
-    Future<void> _loadProgress() async {
-      final data = await ProgressService.load();
-      setState(() {
-        streak = data['streak']!;
-        star = data['star']!;
-      });
-    }
-
+  Future<void> _loadProgress() async {
+    final data = await ProgressService.load();
+    setState(() {
+      streak = data['streak']!;
+      star = data['star']!;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -64,10 +63,7 @@ class _QuizPageState extends State<QuizPage> {
           },
         ),
         centerTitle: true,
-        title: Image.asset(
-          'assets/Logo/appBarLogo.png',
-          height: 60,
-        ),
+        title: Image.asset('assets/Logo/appBarLogo.png', height: 60),
         actions: [
           IconButton(
             icon: Icon(
@@ -79,10 +75,7 @@ class _QuizPageState extends State<QuizPage> {
         ],
       ),
 
-      drawer: Drawer(
-        child: Center(child: Text('Menu')),
-      ),
-
+      drawer: Drawer(child: Center(child: Text('Menu'))),
 
       body: AnimatedContainer(
         duration: const Duration(milliseconds: 300),
@@ -92,9 +85,11 @@ class _QuizPageState extends State<QuizPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-             
               Container(
-                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 16,
+                  vertical: 12,
+                ),
                 decoration: BoxDecoration(
                   color: cardColor,
                   borderRadius: BorderRadius.circular(20),
@@ -174,17 +169,16 @@ class _QuizPageState extends State<QuizPage> {
                         difficulty: 'Easy',
                       ),
                     ),
-                  );
+                  ).then((_) => _loadProgress());
                 },
               ),
 
-
-
               const SizedBox(height: 20),
 
-              Text("▶ Start Play Kuiz",
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold, color: textColor)),
+              Text(
+                "▶ Start Play Kuiz",
+                style: TextStyle(fontWeight: FontWeight.bold, color: textColor),
+              ),
               const SizedBox(height: 10),
 
               QuizCard(
@@ -196,11 +190,10 @@ class _QuizPageState extends State<QuizPage> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (_) => AbcdQuizSetupScreen(
-                        isDarkmode: isDarkmode,
-                      ),
+                      builder: (_) =>
+                          AbcdQuizSetupScreen(isDarkmode: isDarkmode),
                     ),
-                  );
+                  ).then((_) => _loadProgress());
                 },
               ),
 
