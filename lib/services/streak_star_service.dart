@@ -1,73 +1,81 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
 class StreakStarService {
-  static const String _streakKey = 'streak_count';
-  static const String _starsKey = 'stars_count';
-  static const String _lastVisitDateKey = 'last_visit_date';
-  static const String _earnedStarsTodayKey = 'earned_stars_today';
+  static const _pointsKey = 'points';
+  static const _starsKey = 'stars';
+  static const _streakKey = 'streak';
+  static const _lastPlayedKey = 'last_played_date';
 
-  // Add streak when user opens the app
-  static Future<void> addStreakOnAppOpen() async {
+  /// Call this AFTER quiz is finished
+  static Future<void> onQuizCompleted({
+    required int correctAnswers,
+  }) async {
     final prefs = await SharedPreferences.getInstance();
-    final now = DateTime.now();
-    final today = DateTime(now.year, now.month, now.day);
-    
-    // Get last visit date
-    final lastVisitMillis = prefs.getInt(_lastVisitDateKey) ?? 0;
-    final lastVisitDate = lastVisitMillis == 0 
-        ? null 
-        : DateTime.fromMillisecondsSinceEpoch(lastVisitMillis);
-    
-    // Check if it's a new day
-    if (lastVisitDate == null || lastVisitDate.isBefore(today)) {
-      // Reset earned stars for the new day
-      await prefs.setInt(_earnedStarsTodayKey, 0);
-      
-      // Check if user visited yesterday for streak continuity
-      final yesterday = today.subtract(const Duration(days: 1));
-      final lastVisitWasYesterday = lastVisitDate != null && 
-          DateTime(lastVisitDate.year, lastVisitDate.month, lastVisitDate.day) == yesterday;
-      
-      if (lastVisitWasYesterday) {
-        // Continue streak
-        final currentStreak = prefs.getInt(_streakKey) ?? 0;
-        await prefs.setInt(_streakKey, currentStreak + 1);
-      } else if (lastVisitDate == null || lastVisitDate.isBefore(yesterday)) {
-        // Break streak - start from 1
-        await prefs.setInt(_streakKey, 1);
-      }
-      // If visited today already, do nothing for streak
+
+    // ---------- STAR SYSTEM ----------
+    int points = prefs.getInt(_pointsKey) ?? 0;
+    int stars = prefs.getInt(_starsKey) ?? 1;
+
+    points += correctAnswers;
+
+    // Every 10 points = +1 star
+    final newStars = (points ~/ 10) + 1;
+
+    if (newStars > stars) {
+      stars = newStars;
     }
-    
-    // Update last visit date to today
-    await prefs.setInt(_lastVisitDateKey, today.millisecondsSinceEpoch);
+
+    await prefs.setInt(_pointsKey, points);
+    await prefs.setInt(_starsKey, stars);
+
+    // ---------- STREAK SYSTEM ----------
+    final today = DateTime.now();
+    final todayDate =
+        DateTime(today.year, today.month, today.day);
+
+    final lastPlayedMillis = prefs.getInt(_lastPlayedKey);
+    int streak = prefs.getInt(_streakKey) ?? 0;
+
+    if (lastPlayedMillis == null) {
+      // First time playing
+      streak = 1;
+    } else {
+      final lastPlayed =
+          DateTime.fromMillisecondsSinceEpoch(lastPlayedMillis);
+      final lastDate =
+          DateTime(lastPlayed.year, lastPlayed.month, lastPlayed.day);
+
+      final difference = todayDate.difference(lastDate).inDays;
+
+      if (difference == 1) {
+        streak += 1; // continue streak
+      } else if (difference > 1) {
+        streak = 1; // reset streak
+      }
+      // difference == 0 → same day → do nothing
+    }
+
+    await prefs.setInt(_streakKey, streak);
+    await prefs.setInt(
+      _lastPlayedKey,
+      todayDate.millisecondsSinceEpoch,
+    );
   }
 
-  // Add stars when quiz is completed
-  static Future<void> addStars(int earnedStars) async {
+  // ---------- GETTERS ----------
+
+  static Future<int> getStars() async {
     final prefs = await SharedPreferences.getInstance();
-    final currentStars = prefs.getInt(_starsKey) ?? 0;
-    await prefs.setInt(_starsKey, currentStars + earnedStars);
+    return prefs.getInt(_starsKey) ?? 1;
   }
 
-  // Get current streak
+  static Future<int> getPoints() async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getInt(_pointsKey) ?? 0;
+  }
+
   static Future<int> getStreak() async {
     final prefs = await SharedPreferences.getInstance();
     return prefs.getInt(_streakKey) ?? 0;
-  }
-
-  // Get total stars
-  static Future<int> getStars() async {
-    final prefs = await SharedPreferences.getInstance();
-    return prefs.getInt(_starsKey) ?? 0;
-  }
-
-  // Reset all data (for testing/debugging)
-  static Future<void> resetAll() async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.remove(_streakKey);
-    await prefs.remove(_starsKey);
-    await prefs.remove(_lastVisitDateKey);
-    await prefs.remove(_earnedStarsTodayKey);
   }
 }
