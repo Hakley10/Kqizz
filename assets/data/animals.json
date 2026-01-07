@@ -1,0 +1,54 @@
+{
+  "items": [
+    {
+      "id": "lion",
+      "name": "Lion",
+      "image": "assets/animals/lion.jpg"
+    },
+    {
+      "id": "tiger",
+      "name": "Tiger",
+      "image": "assets/animals/tiger.jpg"
+    },
+    {
+      "id": "elephant",
+      "name": "Elephant",
+      "image": "assets/animals/elephant.jpg"
+    },
+    {
+      "id": "giraffe",
+      "name": "Giraffe",
+      "image": "assets/animals/giraffe.jpg"
+    },
+    {
+      "id": "zebra",
+      "name": "Zebra",
+      "image": "assets/animals/zebra.jpg"
+    },
+    {
+      "id": "panda",
+      "name": "Panda",
+      "image": "assets/animals/panda.jpg"
+    },
+    {
+      "id": "kangaroo",
+      "name": "Kangaroo",
+      "image": "assets/animals/kangaroo.jpg"
+    },
+    {
+      "id": "penguin",
+      "name": "Penguin",
+      "image": "assets/animals/penguin.jpg"
+    },
+    {
+      "id": "dog",
+      "name": "Dog",
+      "image": "assets/animals/dog.jpg"
+    },
+    {
+      "id": "cat",
+      "name": "Cat",
+      "image": "assets/animals/cat.jpg"
+    }
+  ]
+}

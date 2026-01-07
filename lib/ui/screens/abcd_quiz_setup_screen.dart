@@ -25,7 +25,9 @@ class _AbcdQuizSetupScreenState extends State<AbcdQuizSetupScreen> {
 
   final List<String> mainCategories = ['Countries', 'Animal', 'Continent'];
   final List<String> continents = ['Africa', 'Asia', 'Europe', 'America'];
-  final List<String> questionOptions = ['Flag', 'Name', 'Capital', 'Map'];
+
+  final List<String> countryQuestions = ['Flag', 'Name', 'Capital', 'Map'];
+  final List<String> animalQuestions = ['Image', 'Name'];
   final List<String> difficultyOptions = ['Easy', 'Medium', 'Hard'];
 
   Color get bgColor =>
@@ -35,19 +37,37 @@ class _AbcdQuizSetupScreenState extends State<AbcdQuizSetupScreen> {
       widget.isDarkmode ? Colors.white : Colors.black;
 
   List<String> get answerOptions {
-    if (mainCategory == 'Countries' || mainCategory == 'Continent') {
-      if (question == 'Flag') return ['Name', 'Capital'];
-      if (question == 'Name') return ['Flag', 'Capital'];
-      if (question == 'Capital') return ['Flag', 'Name'];
-      if (question == 'Map') return ['Name', 'Flag', 'Capital'];
+    if (mainCategory == 'Animal') {
+      return question == 'Image' ? ['Name'] : ['Image'];
     }
 
-    if (mainCategory == 'Animal') {
-      if (question == 'Flag') return ['Name'];
-      if (question == 'Name') return ['Flag'];
-    }
+    if (question == 'Flag') return ['Name', 'Capital'];
+    if (question == 'Name') return ['Flag', 'Capital'];
+    if (question == 'Capital') return ['Flag', 'Name'];
+    if (question == 'Map') return ['Name', 'Flag', 'Capital'];
 
     return [];
+  }
+
+  List<String> get questionOptions =>
+      mainCategory == 'Animal' ? animalQuestions : countryQuestions;
+
+  void onCategorySelected(String c) {
+    setState(() {
+      mainCategory = c;
+      continent = null;
+
+      question = c == 'Animal' ? 'Image' : 'Flag';
+      answer = answerOptions.first;
+    });
+  }
+
+  void onContinentSelected(String c) {
+    setState(() {
+      continent = c;
+      question = 'Flag';
+      answer = answerOptions.first;
+    });
   }
 
   @override
@@ -85,14 +105,7 @@ class _AbcdQuizSetupScreenState extends State<AbcdQuizSetupScreen> {
                     child: _option(
                       c,
                       mainCategory == c,
-                      () {
-                        setState(() {
-                          mainCategory = c;
-                          continent = null;
-                          question = 'Flag';
-                          answer = answerOptions.first;
-                        });
-                      },
+                      () => onCategorySelected(c),
                     ),
                   ),
                 );
@@ -110,13 +123,7 @@ class _AbcdQuizSetupScreenState extends State<AbcdQuizSetupScreen> {
                       child: _option(
                         c,
                         continent == c,
-                        () {
-                          setState(() {
-                            continent = c;
-                            question = 'Flag';
-                            answer = answerOptions.first;
-                          });
-                        },
+                        () => onContinentSelected(c),
                       ),
                     ),
                   );
@@ -129,53 +136,33 @@ class _AbcdQuizSetupScreenState extends State<AbcdQuizSetupScreen> {
             Row(
               children: [
                 Expanded(
-                  child: Center(
-                    child: Text(
-                      'Question',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: textColor,
+                  child: Column(
+                    children: [
+                      _title('Question'),
+                      _columnOptions(
+                        questionOptions,
+                        question,
+                        (v) {
+                          setState(() {
+                            question = v;
+                            answer = answerOptions.first;
+                          });
+                        },
                       ),
-                    ),
-                  ),
-                ),
-                Expanded(
-                  child: Center(
-                    child: Text(
-                      'Answer',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: textColor,
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-
-            const SizedBox(height: 12),
-
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Expanded(
-                  child: _columnOptions(
-                    questionOptions,
-                    question,
-                    (v) {
-                      setState(() {
-                        question = v;
-                        answer = answerOptions.first;
-                      });
-                    },
+                    ],
                   ),
                 ),
                 const SizedBox(width: 16),
                 Expanded(
-                  child: _columnOptions(
-                    answerOptions,
-                    answer,
-                    (v) => setState(() => answer = v),
+                  child: Column(
+                    children: [
+                      _title('Answer'),
+                      _columnOptions(
+                        answerOptions,
+                        answer,
+                        (v) => setState(() => answer = v),
+                      ),
+                    ],
                   ),
                 ),
               ],

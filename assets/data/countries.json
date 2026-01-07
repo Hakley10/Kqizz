@@ -79,6 +79,130 @@
       "continent": "Africa",
       "flagImage": "assets/flags/south_africa_flag.png",
       "mapImage": "assets/maps/south_africa_map.png"
+    },
+    {
+    "id": "la",
+    "name": "Laos",
+    "capital": "Vientiane",
+    "continent": "Asia",
+    "flagImage": "assets/flags/laos_flag.png",
+    "mapImage": "assets/maps/laos_map.png"
+    },
+    {
+    "id": "mm",
+    "name": "Myanmar",
+    "capital": "Naypyidaw",
+    "continent": "Asia",
+    "flagImage": "assets/flags/myanmar_flag.png",
+    "mapImage": "assets/maps/myanmar_map.png"
+    },
+    {
+    "id": "my",
+    "name": "Malaysia",
+    "capital": "Kuala Lumpur",
+    "continent": "Asia",
+    "flagImage": "assets/flags/malaysia_flag.png",
+    "mapImage": "assets/maps/malaysia_map.png"
+    },
+    {
+    "id": "id",
+    "name": "Indonesia",
+    "capital": "Jakarta",
+    "continent": "Asia",
+    "flagImage": "assets/flags/indonesia_flag.png",
+    "mapImage": "assets/maps/indonesia_map.png"
+    },
+    {
+    "id": "ph",
+    "name": "Philippines",
+    "capital": "Manila",
+    "continent": "Asia",
+    "flagImage": "assets/flags/philippines_flag.png",
+    "mapImage": "assets/maps/philippines_map.png"
+    },
+
+    {
+    "id": "it",
+    "name": "Italy",
+    "capital": "Rome",
+    "continent": "Europe",
+    "flagImage": "assets/flags/italy_flag.png",
+    "mapImage": "assets/maps/italy_map.png"
+    },
+    {
+    "id": "es",
+    "name": "Spain",
+    "capital": "Madrid",
+    "continent": "Europe",
+    "flagImage": "assets/flags/spain_flag.png",
+    "mapImage": "assets/maps/spain_map.png"
+    },
+    {
+    "id": "nl",
+    "name": "Netherlands",
+    "capital": "Amsterdam",
+    "continent": "Europe",
+    "flagImage": "assets/flags/netherlands_flag.png",
+    "mapImage": "assets/maps/netherlands_map.png"
+    },
+    {
+    "id": "be",
+    "name": "Belgium",
+    "capital": "Brussels",
+    "continent": "Europe",
+    "flagImage": "assets/flags/belgium_flag.png",
+    "mapImage": "assets/maps/belgium_map.png"
+    },
+
+    {
+    "id": "ca",
+    "name": "Canada",
+    "capital": "Ottawa",
+    "continent": "America",
+    "flagImage": "assets/flags/canada_flag.png",
+    "mapImage": "assets/maps/canada_map.png"
+    },
+    {
+    "id": "mx",
+    "name": "Mexico",
+    "capital": "Mexico City",
+    "continent": "America",
+    "flagImage": "assets/flags/mexico_flag.png",
+    "mapImage": "assets/maps/mexico_map.png"
+    },
+    {
+    "id": "ar",
+    "name": "Argentina",
+    "capital": "Buenos Aires",
+    "continent": "America",
+    "flagImage": "assets/flags/argentina_flag.png",
+    "mapImage": "assets/maps/argentina_map.png"
+    },
+
+    {
+    "id": "eg",
+    "name": "Egypt",
+    "capital": "Cairo",
+    "continent": "Africa",
+    "flagImage": "assets/flags/egypt_flag.png",
+    "mapImage": "assets/maps/egypt_map.png"
+    },
+    {
+    "id": "ng",
+    "name": "Nigeria",
+    "capital": "Abuja",
+    "continent": "Africa",
+    "flagImage": "assets/flags/nigeria_flag.png",
+    "mapImage": "assets/maps/nigeria_map.png"
+    },
+    {
+    "id": "ke",
+    "name": "Kenya",
+    "capital": "Nairobi",
+    "continent": "Africa",
+    "flagImage": "assets/flags/kenya_flag.png",
+    "mapImage": "assets/maps/kenya_map.png"
     }
+
   ]
 }
